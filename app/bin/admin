@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+/**
+ * @type {commander.CommanderStatic | commander}
+ */
+const program     = require('commander')
+const pathManager = require('../core/path-manager');
+const path        = require('path')
+
+pathManager.init(path.join(__dirname, '../../'));
+
+/**
+ * Server Launcher
+ */
+program
+  .command('server-launcher')
+  .option('--zones [zones]')
+  .option('--with-loginserver')
+  .description('Starts server launcher')
+  .action((options) => require('../commands/server-launcher').serverLauncher(options));
+
+/**
+ * Stop Server
+ */
+program
+  .command('stop-server')
+  .action(() => require('../commands/server-launcher').stopServer());
+
+/**
+ * Timed Restart
+ */
+program
+  .command('restart-server')
+  .option('--timer [seconds]')
+  .action((options) => require('../commands/server-launcher').restartServer(options));
+
+/**
+ * MysqlDump
+ */
+program
+  .command('mysqldump')
+  .description('Perform a MySQL dump')
+  .action(() => require('../commands/mysqldump').dump());
+
+/**
+ * Websocket
+ */
+program
+  .command('ws [port]')
+  .description('Websocket testing')
+  .action((port) => require('../commands/ws-test').test(port));
+
+/**
+ * Hot Reload Listener
+ */
+program
+  .command('hot-reload-listener')
+  .description('Starts EQEmulator hot reload listener service')
+  .action(() => require('../commands/hot-reload-listener').startListener());
+
+/**
+ * Web
+ */
+program
+  .command('web [port]')
+  .description('Starts EQEmu Server Management Interface / API')
+  .action(() => require('./www.js'));
+
+/**
+ * Help
+ */
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+  process.exit();
+}
+
+/**
+ * Parse args
+ */
+program.parse(process.argv);
