@@ -1,0 +1,15 @@
+version: '3.4'
+
+networks:
+  backend:
+    driver: bridge
+
+services:
+  eqemu-admin-build:
+    image: akkadius/eqemu-admin-build-pipeline:latest
+    volumes:
+      - ./:/home/eqemu/build/
+      - ./deploy/scripts/:/home/eqemu/scripts
+    tty: true
+    networks:
+      - backend

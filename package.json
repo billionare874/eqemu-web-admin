@@ -1,0 +1,56 @@
+{
+  "name": "eqemu-admin",
+  "version": "2.0.13",
+  "private": true,
+  "bin": "./app/bin/admin",
+  "scripts": {
+    "start": "node ./app/bin/admin web",
+    "debug": "DEBUG=eqemu-admin:*; node ./app/bin/admin web",
+    "watch": "nodemon --ignore public/ --exec node ./app/bin/admin web"
+  },
+  "pkg": {
+    "assets": [
+      "app/**",
+      "public/**"
+    ],
+    "targets": [
+      "node12-linux-x64",
+      "node12-win-x64"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Akkadius/eqemu-web-admin.git"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "child_process": "^1.0.2",
+    "commander": "^2.20.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dot-object": "^1.7.1",
+    "express": "~4.16.0",
+    "fs": "0.0.1-security",
+    "gh-release": "^3.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.3",
+    "moment": "^2.26.0",
+    "morgan": "~1.9.0",
+    "mysql2": "^2.1.0",
+    "node-watch": "^0.6.4",
+    "path": "^0.12.7",
+    "pidusage": "^2.0.20",
+    "ps-list": "^6.3.0",
+    "recursive-readdir": "^2.2.2",
+    "sequelize": "^5.21.11",
+    "slugify": "^1.4.0",
+    "systeminformation": "^4.26.5",
+    "tcp-ping": "^0.1.1",
+    "telnet-client": "^0.16.4",
+    "uuid": "^3.4.0",
+    "ws": "^7.3.0",
+    "yazl": "^2.5.1"
+  },
+  "devDependencies": {}
+}

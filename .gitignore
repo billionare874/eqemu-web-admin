@@ -1,0 +1,11 @@
+.idea/
+node_modules/
+.DS_STORE
+app-key
+.npm
+.config
+.pkg-cache
+eqemu-admin
+eqemu-admin-linux
+eqemu-admin-win.exe
+public/
